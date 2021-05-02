@@ -6,6 +6,7 @@ import org.koin.dsl.module
 import org.ybk.videoapp.data.BaseRepository
 import org.ybk.videoapp.data.VideoRepository
 import org.ybk.videoapp.data.local.VideoLocalDataSource
+import org.ybk.videoapp.ui.detailvideo.DetailVideoViewModel
 import org.ybk.videoapp.ui.main.MainViewModel
 
 val appModules: Module = module {
@@ -15,5 +16,11 @@ val appModules: Module = module {
 val mainViewModelModule: Module = module {
     viewModel {(repository: BaseRepository) ->
         MainViewModel(repository)
+    }
+}
+
+val detailVideoViewModelModule: Module = module {
+    viewModel {(id: Long, repository: BaseRepository) ->
+        DetailVideoViewModel(id, repository)
     }
 }

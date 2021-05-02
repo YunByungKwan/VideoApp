@@ -4,4 +4,5 @@ import org.ybk.videoapp.data.dto.Video
 
 interface BaseRepository {
     fun getVideoList(): List<Video>
+    fun getVideo(id: Long): Video
 }

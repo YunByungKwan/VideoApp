@@ -26,4 +26,20 @@ object VideoBindingAdapter {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("activity", "detailListData")
+    fun setDetailVideoList(
+            recyclerView: RecyclerView, activity: Activity, items: List<Video>?
+    ) {
+        Log.d("TAG", "items size: ${items?.size}")
+        if(recyclerView.adapter == null) {
+            recyclerView.adapter = DetailVideoListAdapter(activity)
+        }
+        val videoListAdapter = recyclerView.adapter as DetailVideoListAdapter
+        items?.let {
+            videoListAdapter.updateItems(it)
+            videoListAdapter.notifyDataSetChanged()
+        }
+    }
+
 }

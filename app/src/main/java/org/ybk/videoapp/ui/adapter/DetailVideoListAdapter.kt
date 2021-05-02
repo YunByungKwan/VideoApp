@@ -17,15 +17,16 @@ import org.ybk.videoapp.data.dto.Video
 import org.ybk.videoapp.databinding.VideoListItemBinding
 import org.ybk.videoapp.ui.detailvideo.DetailVideoActivity
 
-class VideoListAdapter(
-    private val context: Context
-): RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
+class DetailVideoListAdapter(
+        private val context: Context
+): RecyclerView.Adapter<DetailVideoListAdapter.ViewHolder>() {
+
     private val videoList = ArrayList<Video>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<VideoListItemBinding>(
-            inflater, R.layout.video_list_item, parent, false)
+                inflater, R.layout.video_list_item, parent, false)
         return ViewHolder(binding)
     }
 
@@ -42,7 +43,7 @@ class VideoListAdapter(
     }
 
     inner class ViewHolder(
-        private val binding: VideoListItemBinding
+            private val binding: VideoListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(video: Video) {
@@ -56,13 +57,7 @@ class VideoListAdapter(
             val progressiveMediaSource = ProgressiveMediaSource.Factory(factory).createMediaSource(mediaItem)
             simpleExoPlayer.setMediaSource(progressiveMediaSource)
             simpleExoPlayer.prepare()
-            //simpleExoPlayer.play()
-
-            binding.root.setOnClickListener {
-                val intent = Intent(context, DetailVideoActivity::class.java)
-                intent.putExtra("videoId", video.id)
-                context.startActivity(intent)
-            }
+            simpleExoPlayer.play()
 
             binding.executePendingBindings()
         }

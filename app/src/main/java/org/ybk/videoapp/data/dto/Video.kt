@@ -1,7 +1,7 @@
 package org.ybk.videoapp.data.dto
 
 data class Video(
-    val id: String,
+    val id: Long,
     val title: String,
     val publisher_name: String,
     val url: String,

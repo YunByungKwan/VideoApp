@@ -11,4 +11,8 @@ class VideoRepository(
         return localDataSource.getVideoList()
     }
 
+    override fun getVideo(id: Long): Video {
+        return localDataSource.getVideo(id)
+    }
+
 }
